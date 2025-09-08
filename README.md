@@ -11,3 +11,11 @@
   - 스레드 B가 lock() 호출 -> 스레드 A가 unlock() 하기 전까지 대기(block)
   - 스레드 A가 unlock() -> B가 lock 획득
   - 이로 인해 race condition, data corruption을 방지 할 수 있다.
+
+# GCD / Async/await 처리 속도 비교
+|항목|.concurrent + async|async/await (Task 기반)|
+|------|---|---|
+|스레드 효율|스레드 점유 높음|Task 단위 경량 처리|
+|코드 가독성|콜백 많고 복잡|직관적이며 에러 핸들링 용이|
+|10000 처리|2119.84 ms|131.80 ms|
+|100000 처리| 측정안됨 | -1312.00 ms|
